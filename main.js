@@ -8,7 +8,7 @@ const supabase = createClient(
 	process.env.SUPABASE_ANON_KEY,
 );
 
-const FROM_NUMBER = "+1(659)257-6822";
+const FROM_NUMBER = "MEGA";
 
 (async () => {
 
@@ -25,9 +25,9 @@ const FROM_NUMBER = "+1(659)257-6822";
   const promises = data.map((c) => {
     client.messages
       .create({
-         body: `This is a test message ${c.name} https://google.com`,
+         body: `${c.name} manda-me um print disto`,
          from: FROM_NUMBER,
-         to: "+351" + c.phoneNumber
+         to: c.phoneNumber[0] === "+" ? c.phoneNumber : "+351" + c.phoneNumber
        });
   });
   try {
