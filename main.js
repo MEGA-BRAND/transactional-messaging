@@ -31,9 +31,12 @@ const FROM_NUMBER = "MEGA";
        });
   });
   try {
-    await Promise.all(promises);
+    await Promise.all(promises.map(p => p.catch(error => { 
+      console.log("-> failed to send message:");
+      console.error(error); 
+    })));
     console.log("-> messages sent")
   } catch (err) {
-    console.error("-> failed to send some message", err);
+    console.error("-> something failed");
   }
 })();
